@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorMainBackground">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -44,7 +43,7 @@
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:text="toffor"
-                    android:textAppearance="@style/TextAppearance.Body" />
+                    android:textAppearance="@style/Appearance.Body" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/buttonSubmit"
@@ -66,7 +65,7 @@
                 android:paddingStart="@dimen/spacing_16"
                 android:paddingEnd="@dimen/spacing_16"
                 android:text="@string/toolbar_title_home"
-                android:textAppearance="@style/TextAppearance.Title"
+                android:textAppearance="@style/Appearance.Title"
                 app:layout_collapseMode="none" />
 
 

@@ -9,5 +9,7 @@
 
     <string name="error_user_not_found">User not found.</string>
     <string name="error_no_connection">Failed to connect server.</string>
+    <string name="open_issues">Open issues: %d</string>
+    <string name="star_count">Star count: %d</string>
 
 </resources>

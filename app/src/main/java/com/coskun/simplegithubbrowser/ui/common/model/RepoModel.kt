@@ -5,21 +5,23 @@ import androidx.recyclerview.widget.DiffUtil
 data class RepoModel(
     val repoId: Long,
     val name: String,
+    val ownerName: String,
+    val ownerImageUrl: String?,
     val openIssueCount: Int,
-    var _starCount: Int,
-    var _isFavorite: Boolean
+    private var _starCount: Int,
+    private var _isFavorite: Boolean
 ) {
     val isFavorite get() = _isFavorite
 
     val starCount get() = _starCount
 
-    fun favRepo(): Int {
+    fun addToFavorites(): Int {
         _isFavorite = true
         return ++_starCount
     }
 
-    fun unFavRepo(): Int {
-        _isFavorite = true
+    fun removeFromFavorites(): Int {
+        _isFavorite = false
         return --_starCount
     }
 
@@ -32,7 +34,7 @@ class RepoModelItemCallback : DiffUtil.ItemCallback<RepoModel>() {
     }
 
     override fun areContentsTheSame(oldItem: RepoModel, newItem: RepoModel): Boolean {
-        return oldItem._isFavorite == newItem._isFavorite
+        return oldItem.isFavorite == newItem.isFavorite
     }
 
 }

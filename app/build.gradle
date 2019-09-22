@@ -16,12 +16,18 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
 }
 
 dependencies {
@@ -55,4 +61,9 @@ dependencies {
     implementation "com.squareup.moshi:moshi-adapters:${moshi_version}"
     implementation("com.squareup.moshi:moshi-kotlin:${moshi_version}")
     kapt("com.squareup.moshi:moshi-kotlin-codegen:${moshi_version}")
+
+
+    //Image loading
+    implementation "io.coil-kt:coil:${coil_version}"
+
 }

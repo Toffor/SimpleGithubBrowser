@@ -39,7 +39,19 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:${dagger_version}"
 
-    //Coroutines
+    //Threading
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+
+    //Networking
+    implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
+    implementation("com.squareup.retrofit2:converter-moshi:${retrofit_version}") {
+        exclude group: 'com.squareup.moshi', module: 'moshi-kotlin'
+    }
+
+    //Json Parsing
+    implementation "com.squareup.moshi:moshi-adapters:${moshi_version}"
+    implementation("com.squareup.moshi:moshi-kotlin:${moshi_version}")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:${moshi_version}")
 }

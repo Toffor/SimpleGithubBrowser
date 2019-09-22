@@ -7,13 +7,18 @@ import com.coskun.simplegithubbrowser.ui.navigator.Navigator
 
 class MainActivity : AppCompatActivity() {
 
+    private val applicationComponent by lazy {
+        ComponentFactory.getApplicationComponent(this)
+    }
+
     private lateinit var navigator: Navigator
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        navigator = ComponentFactory.getApplicationComponent(this).getNavigator()
-        navigator.initialize(this, savedInstanceState)
         setContentView(R.layout.activity_main)
+        navigator = applicationComponent.getNavigator()
+        navigator.initialize(this, savedInstanceState)
     }
 
     override fun onBackPressed() {

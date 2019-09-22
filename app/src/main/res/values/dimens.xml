@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="spacing_16">16dp</dimen>
+
+    <dimen name="standard_height_48">48dp</dimen>
+    <dimen name="standard_height_72">72dp</dimen>
+
+    <dimen name="text_size_button">16sp</dimen>
+    <dimen name="text_size_title">20sp</dimen>
+    <dimen name="text_size_body1">16sp</dimen>
+
+    <dimen name="standard_radius">3dp</dimen>
+
+    <dimen name="standard_card_elevation">2dp</dimen>
+
+    <dimen name="standard_stroke_width">1dp</dimen>
+
+    <dimen name="toolbar_height">56dp</dimen>
+
+    <dimen name="app_bar_layout_height">136dp</dimen>
+
+</resources>

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#515151</color>
+    <color name="colorPrimaryDark">#353535</color>
+    <color name="colorAccent">#DAB736</color>
+
+    <color name="colorPrimaryDark80">#CC606060</color>
+
+
+    <color name="colorMainBackground">#313131</color>
+
+    <color name="repo_item_background">#383838</color>
+
+    <color name="colorWhite70">#4DFFFFFF</color>
+    <color name="colorPrimaryText">#ffffff</color>
+    <color name="colorSecondaryText">#4DD0E1</color>
 </resources>

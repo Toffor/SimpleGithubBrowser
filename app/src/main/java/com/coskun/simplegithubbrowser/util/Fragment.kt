@@ -1,12 +1,19 @@
 package com.coskun.simplegithubbrowser.util
 
 import android.os.Bundle
+import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.coskun.simplegithubbrowser.R
 import com.coskun.simplegithubbrowser.di.ComponentFactory
 import com.coskun.simplegithubbrowser.di.PresentationComponent
 import com.coskun.simplegithubbrowser.ui.common.BaseFragment
+import com.coskun.simplegithubbrowser.ui.common.BaseViewModel
+import com.coskun.simplegithubbrowser.ui.common.model.ErrorStatus
+import com.google.android.material.snackbar.Snackbar
 
 
 /**
@@ -42,3 +49,27 @@ fun BaseFragment.presentationComponents() = lazy(LazyThreadSafetyMode.NONE) {
     ComponentFactory.getPresentationComponent(this)
 }
 
+
+/**
+ * A lazy delegation of viewModel which's owner parent activity.
+ */
+inline fun <reified VM : BaseViewModel> BaseFragment.parentActivityViewModels() =
+    lazy(mode = LazyThreadSafetyMode.NONE) {
+        val factory = presentationComponent.getViewModelFactory()
+        ViewModelProvider(activity!!, factory).get(VM::class.java)
+    }
+
+
+/**
+ * Shows [Snackbar] according to given [ErrorStatus] object.
+ */
+fun Fragment.showSnackbar(errorStatus: ErrorStatus, action: (View) -> Unit = {}) {
+    val snackbar = Snackbar.make(view!!, errorStatus.errorMessage, Snackbar.LENGTH_INDEFINITE)
+    if (errorStatus.actionMessage != 0) {
+        snackbar.setAction(errorStatus.actionMessage, action)
+    }
+    snackbar.setBackgroundTint(ContextCompat.getColor(context!!, R.color.colorPrimaryDark))
+    snackbar.setTextColor(ContextCompat.getColor(context!!, R.color.colorWhite70))
+    snackbar.setActionTextColor(ContextCompat.getColor(context!!, R.color.colorAccent))
+    snackbar.show()
+}

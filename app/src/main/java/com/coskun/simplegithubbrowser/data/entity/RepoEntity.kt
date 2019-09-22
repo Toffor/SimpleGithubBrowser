@@ -8,9 +8,24 @@ import com.squareup.moshi.JsonClass
 data class RepoEntity(
 
     @Json(name = "id")
-    val id: Long
+    val id: Long,
+
+    @Json(name = "name")
+    val name: String,
+
+    @Json(name = "stargazers_count")
+    val starCount: Int,
+
+    @Json(name = "open_issues_count")
+    val openIssueCount: Int
 )
 
-fun RepoEntity.mapToRepoModel(favoriteRepoIds: Set<Long>): RepoModel{
-    return RepoModel(id, favoriteRepoIds.contains(id))
+fun RepoEntity.mapToRepoModel(favoriteRepoIds: Set<Long>): RepoModel {
+    return RepoModel(
+        repoId = id,
+        name = name,
+        _isFavorite = favoriteRepoIds.contains(id),
+        _starCount = starCount,
+        openIssueCount = starCount
+    )
 }

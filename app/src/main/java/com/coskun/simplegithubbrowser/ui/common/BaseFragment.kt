@@ -18,7 +18,7 @@ abstract class BaseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(layoutId, container)
+        return inflater.inflate(layoutId, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -32,3 +32,4 @@ abstract class BaseFragment : Fragment() {
         presentationComponent.getNavigator().popBack()
     }
 }
+

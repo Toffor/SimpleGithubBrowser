@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMainBackground">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="@dimen/standard_card_elevation"
+        android:background="@color/colorPrimary">
+
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_layout_height"
+            android:minHeight="80dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:layout_marginEnd="@dimen/spacing_16"
+                android:layout_marginBottom="@dimen/spacing_16"
+                android:orientation="horizontal"
+                app:layout_collapseMode="none">
+
+                <EditText
+                    android:id="@+id/editTextSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/standard_height_48"
+                    android:layout_weight="1"
+                    android:background="@drawable/search_view_bg"
+                    android:hint="@string/username"
+                    android:paddingStart="@dimen/spacing_16"
+                    android:paddingEnd="@dimen/spacing_16"
+                    android:maxLines="1"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:text="toffor"
+                    android:textAppearance="@style/TextAppearance.Body" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonSubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/standard_height_48"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:backgroundTint="@color/colorAccent"
+                    android:enabled="true"
+                    android:text="@string/submit"
+                    android:textAllCaps="false"
+                    android:textColor="@color/selector_button_submit" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/spacing_16"
+                android:paddingEnd="@dimen/spacing_16"
+                android:text="@string/toolbar_title_home"
+                android:textAppearance="@style/TextAppearance.Title"
+                app:layout_collapseMode="none" />
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewUserRepos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/spacing_16"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:layout_marginEnd="@dimen/spacing_16"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        tools:listitem="@layout/item_repo_holder" />
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/progressBarLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        style="@style/Widget.AppCompat.ProgressBar"/>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

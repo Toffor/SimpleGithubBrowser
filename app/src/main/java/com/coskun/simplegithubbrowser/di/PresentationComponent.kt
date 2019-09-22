@@ -8,4 +8,6 @@ import dagger.Subcomponent
 interface PresentationComponent {
 
     fun getNavigator(): Navigator
+
+    fun getViewModelFactory(): ViewModelFactory
 }

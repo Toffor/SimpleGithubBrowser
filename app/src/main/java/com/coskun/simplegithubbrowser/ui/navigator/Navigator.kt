@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import com.coskun.simplegithubbrowser.MainActivity
 import com.coskun.simplegithubbrowser.R
 import com.coskun.simplegithubbrowser.di.AppScope
+import com.coskun.simplegithubbrowser.ui.userrepos.UserReposFragment
 import com.coskun.simplegithubbrowser.ui.common.BaseFragment
 import com.coskun.simplegithubbrowser.util.commitTransaction
 import javax.inject.Inject
@@ -25,12 +26,14 @@ class Navigator @Inject constructor() {
     fun initialize(activity: MainActivity, savedInstanceState: Bundle?) {
         fragmentManager = activity.supportFragmentManager
         if (savedInstanceState == null) {
-            //TODO: Replace home fragment
+            navigateToUserRepos()
         }
     }
 
 
-
+    fun navigateToUserRepos() {
+        navigateInternal(UserReposFragment())
+    }
 
     fun onBackPressed() {
         primaryNavigationFragment?.onBackPressed()

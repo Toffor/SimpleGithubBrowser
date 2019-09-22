@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageViewUser"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/spacing_16"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:adjustViewBounds="true"
+        app:layout_constraintHeight_percent=".15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearToolbar"
+        tools:src="@color/colorPrimary" />
+
+    <LinearLayout
+        android:id="@+id/linearToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/spacing_16"
+            android:paddingEnd="@dimen/spacing_16"
+            android:src="@drawable/ic_arrow_back_24dp" />
+
+        <TextView
+            android:id="@+id/textViewRepoName"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/toolbar_height"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textAppearance="@style/Appearance.Title"
+            tools:text="Repo1" />
+
+        <ImageView
+            android:id="@+id/imageViewFavoriteStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/spacing_16"
+            android:paddingEnd="@dimen/spacing_16"
+            tools:src="@drawable/ic_star_24dp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/textViewOwnerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_16"
+        android:textAppearance="@style/Appearance.Body"
+        app:layout_constraintStart_toEndOf="@id/imageViewUser"
+        app:layout_constraintTop_toTopOf="@id/imageViewUser"
+        tools:text="User 1" />
+
+    <TextView
+        android:id="@+id/textViewStarCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:textAppearance="@style/Appearance.Body"
+        app:layout_constraintStart_toStartOf="@id/imageViewUser"
+        app:layout_constraintTop_toBottomOf="@id/imageViewUser"
+        tools:text="Stars: 173" />
+
+    <TextView
+        android:id="@+id/textViewOpenIssues"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:textAppearance="@style/Appearance.Body"
+        app:layout_constraintStart_toStartOf="@id/textViewStarCount"
+        app:layout_constraintTop_toBottomOf="@id/textViewStarCount"
+        tools:text="Open Issues: 34" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

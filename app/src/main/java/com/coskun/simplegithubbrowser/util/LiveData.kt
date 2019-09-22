@@ -34,7 +34,7 @@ inline fun <T : Any?> MutableLiveData<T>.update(transform: (T) -> T) {
 
 
 /**
- * Executes given [action] if current value is not null and passing current valueas param.
+ * Executes given [action] if current value is not null and passing current values param.
  */
 fun <T> LiveData<T>.executeIfValueNotNull(action: (T) -> Unit) {
     action(value ?: return)

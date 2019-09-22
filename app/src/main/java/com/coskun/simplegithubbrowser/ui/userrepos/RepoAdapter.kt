@@ -11,7 +11,9 @@ import com.coskun.simplegithubbrowser.ui.common.model.RepoModel
 import com.coskun.simplegithubbrowser.ui.common.model.RepoModelItemCallback
 import com.coskun.simplegithubbrowser.util.inflate
 
-class RepoAdapter : ListAdapter<RepoModel, RepoAdapter.RepoHolder>(RepoModelItemCallback()) {
+class RepoAdapter(private val onRepoSelectListener: (RepoModel) -> Unit) :
+    ListAdapter<RepoModel, RepoAdapter.RepoHolder>(RepoModelItemCallback()) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoHolder {
         return RepoHolder(parent.inflate(R.layout.item_repo_holder))
@@ -29,10 +31,15 @@ class RepoAdapter : ListAdapter<RepoModel, RepoAdapter.RepoHolder>(RepoModelItem
             itemView.findViewById<ImageView>(R.id.imageViewFavoriteStatus)
 
         fun bind(model: RepoModel) = with(model) {
+
             textViewRepoName.text = name
             imageViewFavoriteStatus.setImageResource(
                 if (isFavorite) R.drawable.ic_star_24dp else R.drawable.ic_star_border_24dp
             )
+
+            itemView.setOnClickListener {
+                onRepoSelectListener(model)
+            }
         }
     }
 }

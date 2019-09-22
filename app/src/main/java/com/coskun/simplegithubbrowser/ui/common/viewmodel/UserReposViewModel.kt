@@ -1,4 +1,4 @@
-package com.coskun.simplegithubbrowser.ui.userrepos
+package com.coskun.simplegithubbrowser.ui.common.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,17 +6,23 @@ import com.coskun.simplegithubbrowser.R
 import com.coskun.simplegithubbrowser.data.interactor.RepoInteractor
 import com.coskun.simplegithubbrowser.ui.common.BaseViewModel
 import com.coskun.simplegithubbrowser.ui.common.model.RepoModel
+import com.coskun.simplegithubbrowser.ui.navigator.Navigator
+import com.coskun.simplegithubbrowser.util.logError
 import retrofit2.HttpException
 import java.net.UnknownHostException
 import javax.inject.Inject
 
 
-class UserReposViewModule @Inject constructor(
+class UserReposViewModel @Inject constructor(
+    private val navigator: Navigator,
     private val repoInteractor: RepoInteractor
 ) : BaseViewModel() {
 
     private val _usersReposList = MutableLiveData<List<RepoModel>>()
     var usersReposList: LiveData<List<RepoModel>> = _usersReposList
+
+    private val _detailRepoModel = MutableLiveData<RepoModel>()
+    val detailRepoModel: LiveData<RepoModel> = _detailRepoModel
 
     fun searchForUser(userName: String) = cancelPreviousAndLaunch(onError = ::handleSearchError) {
         updateLoadingStatus(true)
@@ -26,6 +32,7 @@ class UserReposViewModule @Inject constructor(
     }
 
     private fun handleSearchError(throwable: Throwable) {
+        logError(throwable)
         updateLoadingStatus(false)
         when (throwable) {
             is HttpException -> {
@@ -52,6 +59,21 @@ class UserReposViewModule @Inject constructor(
                 )
             }
         }
+    }
+
+    fun addToFavorites(repoId: Long) {
+        repoInteractor.addToFavorites(repoId)
+    }
+
+    fun removeFromFavorites(repoId: Long) {
+        repoInteractor.removeFromFavorites(repoId)
+    }
+
+
+
+    fun navigateToRepoDetails(repoModel: RepoModel) {
+        _detailRepoModel.value = repoModel
+        navigator.navigateToRepoDetails()
     }
 
     companion object {

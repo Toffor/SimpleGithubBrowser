@@ -6,14 +6,17 @@ import android.view.KeyEvent
 import androidx.core.widget.doAfterTextChanged
 import com.coskun.simplegithubbrowser.R
 import com.coskun.simplegithubbrowser.ui.common.BaseFragment
+import com.coskun.simplegithubbrowser.ui.common.viewmodel.UserReposViewModel
 import com.coskun.simplegithubbrowser.util.*
 import kotlinx.android.synthetic.main.fragment_user_repos.*
 
 class UserReposFragment : BaseFragment() {
 
-    private val viewModel by parentActivityViewModels<UserReposViewModule>()
+    private val viewModel by parentActivityViewModels<UserReposViewModel>()
 
-    private val repoAdapter = RepoAdapter()
+    private val repoAdapter = RepoAdapter { repoModel ->
+        viewModel.navigateToRepoDetails(repoModel)
+    }
 
     override val layoutId = R.layout.fragment_user_repos
 
@@ -54,14 +57,14 @@ class UserReposFragment : BaseFragment() {
             if (isLoading) progressBarLoading.show() else progressBarLoading.hide()
         }
 
-        observe(errorStatus) { errorStatus ->
+        observeSingleEvent(errorStatus) { errorStatus ->
             when (errorStatus.errorCode) {
-                UserReposViewModule.CODE_USER_NOT_FOUND -> showSnackbar(errorStatus) {
+                UserReposViewModel.CODE_USER_NOT_FOUND -> showSnackbar(errorStatus) {
                     editTextSearch.requestFocus()
                     editTextSearch.showSoftKeyboard()
                 }
 
-                UserReposViewModule.CODE_NO_CONNECTION -> showSnackbar(errorStatus) {
+                UserReposViewModel.CODE_NO_CONNECTION -> showSnackbar(errorStatus) {
                     searchForUser()
                 }
             }

@@ -29,6 +29,10 @@ abstract class BaseFragment : Fragment() {
     protected abstract fun onViewAppear(savedInstanceState: Bundle?)
 
     fun onBackPressed() {
+        popBack()
+    }
+
+    fun popBack(){
         presentationComponent.getNavigator().popBack()
     }
 }

@@ -6,8 +6,9 @@ import androidx.fragment.app.FragmentManager
 import com.coskun.simplegithubbrowser.MainActivity
 import com.coskun.simplegithubbrowser.R
 import com.coskun.simplegithubbrowser.di.AppScope
-import com.coskun.simplegithubbrowser.ui.userrepos.UserReposFragment
 import com.coskun.simplegithubbrowser.ui.common.BaseFragment
+import com.coskun.simplegithubbrowser.ui.repodetail.RepoDetailFragment
+import com.coskun.simplegithubbrowser.ui.userrepos.UserReposFragment
 import com.coskun.simplegithubbrowser.util.commitTransaction
 import javax.inject.Inject
 
@@ -28,6 +29,10 @@ class Navigator @Inject constructor() {
         if (savedInstanceState == null) {
             navigateToUserRepos()
         }
+    }
+
+    fun navigateToRepoDetails(){
+        navigateInternal(RepoDetailFragment())
     }
 
 

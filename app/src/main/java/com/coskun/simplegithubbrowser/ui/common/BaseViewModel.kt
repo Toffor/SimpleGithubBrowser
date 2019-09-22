@@ -6,8 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.coskun.simplegithubbrowser.ui.common.model.ErrorStatus
+import com.coskun.simplegithubbrowser.util.SingleEvent
 import com.coskun.simplegithubbrowser.util.launchSafe
 import com.coskun.simplegithubbrowser.util.logError
+import com.coskun.simplegithubbrowser.util.sendEvent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -24,8 +26,8 @@ abstract class BaseViewModel : ViewModel() {
     private val _loadingStatus = MutableLiveData<LoadingStatus>()
     val loadingStatus: LiveData<LoadingStatus> = _loadingStatus
 
-    private val _errorStatus = MutableLiveData<ErrorStatus>()
-    val errorStatus: LiveData<ErrorStatus> = _errorStatus
+    private val _errorStatus = MutableLiveData<SingleEvent<ErrorStatus?>>()
+    val errorStatus: LiveData<SingleEvent<ErrorStatus?>> = _errorStatus
 
     protected fun cancelPreviousAndLaunch(
         requestId: Int = 0,
@@ -51,7 +53,7 @@ abstract class BaseViewModel : ViewModel() {
         @StringRes actionMessage: Int = 0,
         errorCode: Int = 0
     ) {
-        _errorStatus.value = ErrorStatus(errorMessage, actionMessage, errorCode)
+        _errorStatus.sendEvent(ErrorStatus(errorMessage, actionMessage, errorCode))
     }
 
     protected open fun onViewModelScopeError(throwable: Throwable) {
